@@ -1,0 +1,283 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Sep 30, 2020 at 09:23 AM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.2.31
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `feedback_system`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `admin_id` int(11) NOT NULL,
+  `user` varchar(50) NOT NULL,
+  `pass` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`admin_id`, `user`, `pass`) VALUES
+(1, 'admin@gmail.com', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact`
+--
+
+//Table for students
+
+CREATE TABLE students (
+   stu_id int(11) NOT NULL,
+   stu_name char(40) NOT NULL,
+   stu_email varchar(40) NOT NULL,
+   stu_password varchar(40) NOT NULL,
+   stu_class varchar(20) NOT NULL,
+   stu_semester varchar(10) NOT NULL,
+   stu_gender varchar(40) NOT NULL,
+   stu_img varchar(50) NOT NULL,
+   stu_dob date NOT NULL,
+   admin_id int NOT NULL,
+   FOREIGN KEY (admin_id) REFERENCES admin(admin_id) ON DELETE CASCADE,
+   PRIMARY KEY (stu_id),
+   UNIQUE KEY (stu_email)
+);
+
+CREATE TABLE studentPhones
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `faculty`
+--
+
+CREATE TABLE `faculty` (
+  `id` int(11) NOT NULL,
+  `user_alias` varchar(30) NOT NULL,
+  `Name` varchar(30) NOT NULL,
+  `designation` varchar(100) NOT NULL,
+  `programme` varchar(50) NOT NULL,
+  `semester` varchar(10) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(75) NOT NULL,
+  `mobile` bigint(20) NOT NULL,
+  `date` datetime NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `faculty`
+--
+
+//Tuples for Faculty table
+INSERT INTO Teacher (T_Name, T_desg, T_sem, T_email, T_password,) VALUES
+                    ("jaganath padhy", " Professior", "vi", "jaganathpadhy@gmail.com","jp@12345"),
+                    ("debender maharana", "Professor", "ii", "debendermaharana@gmail.com", "dm@12345"),
+                    ("ashish ranjan dash", "Professor", "iv", "ashishranjandash@gmail.com", "ard@12345"),
+                    ("dhawleswar rao", "Assistant Professor", "v", "dhawleswarrao@gmail.com", "dr@12345"),
+                    ("soumen chakarworth", "Assistant Professor", "vi", "soumenchakarworthy@gmail.com", "sc@12345"),
+                    ("nagapali jeevaratnam", "Assistant Professor", "v", "nagapalijeevaratnam@gmail.com", "nj@12345"),
+                    ("santosh bhal", "Assistant Professor", "i", "santoshbhal@gmail.com", "sb@12345"),
+                    ("ashok mishra", "Assistant Professor", "iv", "ashokmishra@gmail.com", "am@12345"),
+                    ("balaji pady", "Assistant Professor", "i", "balajipady@gmail.com", "bp@12345"),
+                    ("rajen boss", "Assistant Professor", "vi", "rajenboss@gmail.com", "rb@12345");
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `id` int(11) NOT NULL,
+  `student_id` varchar(50) NOT NULL,
+  `faculty_id` varchar(50) NOT NULL,
+  `Teacher provided the course outline having weekly content plan w` enum('5','4','3','2','1') NOT NULL,
+  `Course objectives,learning outcomes and grading criteria are cle` enum('5','4','3','2','1') NOT NULL,
+  `Course integrates throretical course concepts with the real worl` enum('5','4','3','2','1') NOT NULL,
+  `Teacher is punctual,arrives on time and leaves on time` enum('5','4','3','2','1') NOT NULL,
+  `Teacher is good at stimulating the interest in the course conten` enum('5','4','3','2','1') NOT NULL,
+  `Teacher is good at explaining the subject matter` enum('5','4','3','2','1') NOT NULL,
+  `Teacher's presentation was clear,loud ad easy to understand` enum('5','4','3','2','1') NOT NULL,
+  `Teacher is good at using innovative teaching methods/ways` enum('5','4','3','2','1') NOT NULL,
+  `Teacher is available and helpful during counseling hours` enum('5','4','3','2','1') NOT NULL,
+  `Teacher has competed the whole course as per course outline` enum('5','4','3','2','1') NOT NULL,
+  `Teacher was always fair and impartial:` enum('5','4','3','2','1') NOT NULL,
+  `Assessments conducted are clearly connected to maximize learinin` enum('5','4','3','2','1') NOT NULL,
+  `What I liked about the course` text NOT NULL,
+  `Why I disliked about the course` text NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`id`, `student_id`, `faculty_id`, `Teacher provided the course outline having weekly content plan w`, `Course objectives,learning outcomes and grading criteria are cle`, `Course integrates throretical course concepts with the real worl`, `Teacher is punctual,arrives on time and leaves on time`, `Teacher is good at stimulating the interest in the course conten`, `Teacher is good at explaining the subject matter`, `Teacher's presentation was clear,loud ad easy to understand`, `Teacher is good at using innovative teaching methods/ways`, `Teacher is available and helpful during counseling hours`, `Teacher has competed the whole course as per course outline`, `Teacher was always fair and impartial:`, `Assessments conducted are clearly connected to maximize learinin`, `What I liked about the course`, `Why I disliked about the course`, `date`) VALUES
+(96, 'gopal123@gmail.com', 'jaganath@gmail.com', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '\r\nddddddddddddd', 'aa', '2023-03-20'),
+(68, 'ravikiran123@gmail.com', 'jaganath@gmail.com', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '\r\nddddddddddddd', 'aa', '2023-03-20'),
+(117, 'nikhil123@gmail.com', 'jaganath@gmail.com', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '\r\nddddddddddddd', 'aa', '2023-03-20'),
+(131, 'sibo123@gmail.com', 'jaganath@gmail.com', '5', '3', '1', '5', '5', '3', '3', '3', '3', '5', '5', '5', '\r\n', '\r\n', '2023-03-20'),
+(67, 'suresh@yahoo.com', 'jaganath@gmail.com', '5', '5', '5', '2', '1', '5', '5', '4', '5', '5', '5', '5', '\r\ndfdfdfdfdfd', '\r\n', '2023-03-20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `files`
+--
+
+CREATE TABLE `files` (
+  `notice_id` int(11) NOT NULL,
+  `attachment` varchar(255) NOT NULL,
+  `subject` varchar(100) NOT NULL,
+  `Description` text NOT NULL,
+  `Date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `files`
+--
+
+INSERT INTO `files` (`notice_id`, `attachment`, `subject`, `Description`, `Date`) VALUES
+(8, 'AteekCV_webprog (1).docx', 'advanced', 'dfdfdfd', '2023-03-20 12:39:35');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `name` char(40) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `pass` varchar(40) NOT NULL,
+  `mobile` bigint(11) NOT NULL,
+  `programme` varchar(20) NOT NULL,
+  `semester` varchar(10) NOT NULL,
+  `gender` varchar(40) NOT NULL,
+  `hobbies` varchar(40) NOT NULL,
+  `image` varchar(50) NOT NULL,
+  `dob` date NOT NULL,
+  `regid` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+//Tuples for students table
+INSERT INTO students(stu_id,stu_name,stu_email,stu_password,stu_class,stu_semester,stu_gender,stu_img,stu_dob) VALUES
+                    (96,"gopal","gopal123@gmail.com","gk@12345","B.Tech","6th","m","gopal.jpg","2001-12-01"),
+                    (131,"sibo","sibo123@gmail.com","sb@12345","B.Tech","6th","m","gopal.jpg","2001-12-01"),
+                    (68,"ravi","ravi123@gmail.com","rk@12345","B.Tech","6th","m","gopal.jpg","2001-12-01"),
+                    (69,"suresh","suresh123@gmail.com","ys@12345","B.Tech","6th","m","suresh.jpg","2002-02-15"),
+                    (116"nikhil","nikhil123@yahoo.com","kn@12345","B.Tech","6th","m","nikhil.jpg","20
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`admin_id`);
+
+--
+-- Indexes for table `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `faculty`
+--
+ALTER TABLE `faculty`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `files`
+--
+ALTER TABLE `files`
+  ADD PRIMARY KEY (`notice_id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+ALTER TABLE `user` ADD FULLTEXT KEY `name` (`name`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `faculty`
+--
+ALTER TABLE `faculty`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `files`
+--
+ALTER TABLE `files`
+  MODIFY `notice_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
